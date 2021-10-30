@@ -15,12 +15,26 @@ app.get('/', (req, res) => {
 
 
 app.get('/zip/:zipcode', (req, res) => {
+  const zipcode = req.params.zipcode
+  res.json(zipdb.byZip[zipcode]);
   // fill in...
+  const inputZip = zipdb.byZip[zipcode]
+  if (!inputZip){
+    res.status(404).send('Zipcode Not Found')
+  }
+    res.json(inputZip)
 });
 
 
 app.get('/city/:cityname', (req, res) => {
+  const cities = req.params.cityname
+  res.json(zipdb.byCity[cities]);
   // fill in...
+  const inputCity = zipdb.byCity[cities]
+  if (!inputCity){
+    res.status(404).send('City Not Found')
+  }
+    res.json(inputCity)
 });
 
 
